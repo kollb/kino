@@ -25,7 +25,7 @@ COPY --chown=jboss:jboss docker-entrypoint.sh /opt/jboss/docker-entrypoint.sh
 # Configure WildFly datasource and prepare entrypoint script
 RUN /opt/jboss/wildfly/bin/jboss-cli.sh --file=/tmp/configure-wildfly.cli && \
     rm /tmp/configure-wildfly.cli && \
-    TMPDIR=/tmp sed -i 's/\r$//' /opt/jboss/docker-entrypoint.sh && \
+    TMPDIR=/tmp sed -i 's/\r$//' /opt/jboss/docker-entrypoint.sh && \  # Use /tmp for sed temp files to avoid permission issues
     chmod +x /opt/jboss/docker-entrypoint.sh
 
 # Copy WAR file from builder stage
