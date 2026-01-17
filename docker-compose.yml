@@ -35,8 +35,6 @@ services:
       - DB_NAME=kino
       - DB_USER=kino
       - DB_PASSWORD=kino
-    volumes:
-      - ./target/kino.war:/opt/jboss/wildfly/standalone/deployments/kino.war
 
 volumes:
   mysql-data:

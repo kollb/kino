@@ -2,8 +2,9 @@
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
-    <persistence-unit name="kino" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="kino" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>java:jboss/datasources/KinoDS</jta-data-source>
         <class>io.github.janmalch.kino.entity.Account</class>
         <class>io.github.janmalch.kino.entity.Reservation</class>
         <class>io.github.janmalch.kino.entity.Presentation</class>
@@ -15,12 +16,6 @@
 
         <!--<exclude-unlisted-classes>false</exclude-unlisted-classes> -->
         <properties>
-            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:mysql://mysql:3306/kino?useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
-            <property name="jakarta.persistence.jdbc.user" value="kino"/>
-            <property name="jakarta.persistence.jdbc.password" value="kino"/>
-
             <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
 
             <property name="hibernate.show_sql" value="true"/>

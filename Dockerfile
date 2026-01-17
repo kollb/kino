@@ -5,11 +5,8 @@ FROM maven:3.9-eclipse-temurin-17 AS builder
 
 WORKDIR /app
 
-# Copy pom.xml and download dependencies (better layer caching)
+# Copy all source files
 COPY pom.xml .
-RUN mvn dependency:go-offline -B
-
-# Copy source code
 COPY src ./src
 
 # Build the application
@@ -18,11 +15,23 @@ RUN mvn clean package -DskipTests -Dgit-code-format-maven-plugin.phase=none
 # Stage 2: Create runtime image
 FROM quay.io/wildfly/wildfly:27.0.1.Final-jdk17
 
+# Download MySQL JDBC driver
+ADD --chown=jboss:jboss https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.2.0/mysql-connector-j-8.2.0.jar /tmp/mysql-connector-j.jar
+
+# Copy WildFly configuration script and entrypoint
+COPY --chown=jboss:jboss configure-wildfly.cli /tmp/configure-wildfly.cli
+COPY --chown=jboss:jboss docker-entrypoint.sh /opt/jboss/docker-entrypoint.sh
+
+# Configure WildFly datasource
+RUN /opt/jboss/wildfly/bin/jboss-cli.sh --file=/tmp/configure-wildfly.cli && \
+    rm /tmp/configure-wildfly.cli && \
+    chmod +x /opt/jboss/docker-entrypoint.sh
+
 # Copy WAR file from builder stage
 COPY --from=builder /app/target/kino.war /opt/jboss/wildfly/standalone/deployments/
 
 # Expose WildFly ports
 EXPOSE 8080 9990
 
-# Run WildFly
-CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+# Use custom entrypoint to configure datasource at runtime
+ENTRYPOINT ["/opt/jboss/docker-entrypoint.sh"]
