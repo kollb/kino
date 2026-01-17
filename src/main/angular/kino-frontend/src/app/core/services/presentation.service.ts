@@ -1,8 +1,7 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {DefaultService} from "@api/api/default.service";
-import {untilDestroyed} from "ngx-take-until-destroy";
-import {map, shareReplay} from "rxjs/operators";
+import {map, shareReplay, takeUntil} from "rxjs/operators";
 import {PresentationWithSeatsDto} from "@api/model/presentationWithSeatsDto";
 
 @Injectable({
@@ -11,6 +10,7 @@ import {PresentationWithSeatsDto} from "@api/model/presentationWithSeatsDto";
 export class PresentationService implements OnDestroy {
 
   private presentations$: Observable<PresentationWithSeatsDto[]>;
+  private destroy$ = new Subject<void>();
 
   constructor(private api: DefaultService) {
     this.refresh();
@@ -18,7 +18,7 @@ export class PresentationService implements OnDestroy {
 
   refresh() {
     this.presentations$ = this.api.getAllPresentations().pipe(
-      untilDestroyed(this),
+      takeUntil(this.destroy$),
       shareReplay(1)
     );
   }
@@ -34,6 +34,8 @@ export class PresentationService implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }
