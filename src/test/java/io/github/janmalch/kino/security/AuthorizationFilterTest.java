@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import io.github.janmalch.kino.entity.Account;
 import io.github.janmalch.kino.repository.Repository;
 import io.github.janmalch.kino.repository.RepositoryFactory;
+import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.core.*;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.core.*;
 import org.junit.jupiter.api.Test;
 
 class AuthorizationFilterTest {

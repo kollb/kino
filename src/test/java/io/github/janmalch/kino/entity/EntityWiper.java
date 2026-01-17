@@ -1,15 +1,15 @@
 package io.github.janmalch.kino.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class EntityWiper {
 
@@ -26,8 +26,7 @@ public class EntityWiper {
   @Deprecated
   public void deleteAll() throws IOException, ClassNotFoundException {
     var sum =
-        getClasses("io.github.janmalch.kino.entity")
-            .stream()
+        getClasses("io.github.janmalch.kino.entity").stream()
             .filter(c -> c.isAnnotationPresent(Entity.class))
             .map(Class::getSimpleName)
             .mapToInt(

@@ -1,14 +1,12 @@
 package io.github.janmalch.kino.api.boundary;
 
 import io.github.janmalch.kino.api.ResponseResultBuilder;
-import io.github.janmalch.kino.api.SuccessMessage;
 import io.github.janmalch.kino.api.model.reservation.ReservationDto;
-import io.github.janmalch.kino.api.model.reservation.ReservationInfoDto;
 import io.github.janmalch.kino.control.reservation.*;
 import io.github.janmalch.kino.entity.Role;
 import io.github.janmalch.kino.security.Secured;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Context;
@@ -17,7 +15,7 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.SecurityContext;
 
 @Path("reservation")
-@Api
+@Tag(name = "reservation")
 public class ReservationResource {
 
   @POST
@@ -25,7 +23,7 @@ public class ReservationResource {
   @RolesAllowed("CUSTOMER")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(value = "Returns id of created Reservation", response = Long.class)
+  @Operation(summary = "Returns id of created Reservation")
   public Response newReservation(
       @Context SecurityContext securityContext, ReservationDto reservationDto) {
     var control =
@@ -39,10 +37,7 @@ public class ReservationResource {
   @RolesAllowed("CUSTOMER")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(
-      value = "Returns users reservations ",
-      response = ReservationInfoDto.class,
-      responseContainer = "List")
+  @Operation(summary = "Returns users reservations ")
   public Response getMyReservations(@Context SecurityContext securityContext) {
     var control = new GetMyReservationsControl(securityContext.getUserPrincipal().getName());
     return control.execute(new ResponseResultBuilder<>());
@@ -54,7 +49,7 @@ public class ReservationResource {
   @RolesAllowed("CUSTOMER")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(value = "Returns reservation for given ID", response = ReservationInfoDto.class)
+  @Operation(summary = "Returns reservation for given ID")
   public Response getReservationById(
       @PathParam("id") long id, @Context SecurityContext securityContext) {
     var role = securityContext.isUserInRole(Role.MODERATOR.name()) ? Role.MODERATOR : Role.CUSTOMER;
@@ -68,10 +63,7 @@ public class ReservationResource {
   @RolesAllowed("MODERATOR")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(
-      value = "Returns all reservations",
-      response = ReservationInfoDto.class,
-      responseContainer = "List")
+  @Operation(summary = "Returns all reservations")
   public Response getAllReservations() {
     var control = new GetAllReservationsControl();
     return control.execute(new ResponseResultBuilder<>());
@@ -83,7 +75,7 @@ public class ReservationResource {
   @RolesAllowed("CUSTOMER")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(value = "Updates reservation for given ID", response = SuccessMessage.class)
+  @Operation(summary = "Updates reservation for given ID")
   public Response updateReservationById(
       @PathParam("id") long id,
       @Context SecurityContext securityContext,
@@ -100,7 +92,7 @@ public class ReservationResource {
   @RolesAllowed("CUSTOMER")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(value = "Deletes reservation for given ID", response = SuccessMessage.class)
+  @Operation(summary = "Deletes reservation for given ID")
   public Response deleteReservationById(
       @PathParam("id") long id, @Context SecurityContext securityContext) {
     var role = securityContext.isUserInRole(Role.MODERATOR.name()) ? Role.MODERATOR : Role.CUSTOMER;

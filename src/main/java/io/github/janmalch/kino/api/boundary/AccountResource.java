@@ -1,13 +1,12 @@
 package io.github.janmalch.kino.api.boundary;
 
 import io.github.janmalch.kino.api.ResponseResultBuilder;
-import io.github.janmalch.kino.api.SuccessMessage;
 import io.github.janmalch.kino.api.model.account.AccountInfoDto;
 import io.github.janmalch.kino.api.model.account.SignUpDto;
 import io.github.janmalch.kino.control.account.*;
 import io.github.janmalch.kino.security.Secured;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
@@ -17,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Path("account")
-@Api
+@Tag(name = "account")
 public class AccountResource {
 
   private Logger log = LoggerFactory.getLogger(AccountResource.class);
@@ -40,7 +39,7 @@ public class AccountResource {
   @RolesAllowed("MODERATOR")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(value = "Retrieves the account for the given ID", response = AccountInfoDto.class)
+  @Operation(summary = "Retrieves the account for the given ID")
   public Response getAccountById(@PathParam("id") long id) {
     log.info("------------------ BEGIN GET ACCOUNT BY ID REQUEST ------------------");
     GetAccountByIdControl control = new GetAccountByIdControl(id);
@@ -51,10 +50,7 @@ public class AccountResource {
   @RolesAllowed("MODERATOR")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(
-      value = "Retrieves all accounts",
-      response = AccountInfoDto.class,
-      responseContainer = "List")
+  @Operation(summary = "Retrieves all accounts")
   public Response getAllAccounts() {
     log.info("------------------ BEGIN GET ALL ACCOUNTS ------------------");
     GetAllAccountsControl control = new GetAllAccountsControl();
@@ -67,7 +63,7 @@ public class AccountResource {
   @DELETE
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(value = "Deletes an account", response = SuccessMessage.class)
+  @Operation(summary = "Deletes an account")
   public Response deleteAccount(@PathParam("id") long id) {
     log.info("------------------ BEGIN DELETE ACCOUNT BY ID REQUEST ------------------");
     DeleteAccountByIdControl control = new DeleteAccountByIdControl(id);
@@ -80,7 +76,7 @@ public class AccountResource {
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(value = "Edit an account", response = AccountInfoDto.class)
+  @Operation(summary = "Edit an account")
   public Response editAccountById(@PathParam("id") long id, AccountInfoDto data) {
     log.info("------------------ BEGIN EDIT ACCOUNT BY ID REQUEST ------------------");
     EditAccountById control = new EditAccountById(data);

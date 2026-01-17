@@ -2,9 +2,9 @@ package io.github.janmalch.kino.problem;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriBuilder;
 import java.net.URI;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

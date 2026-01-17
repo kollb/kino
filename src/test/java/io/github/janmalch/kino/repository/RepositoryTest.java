@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import io.github.janmalch.kino.repository.specification.Specification;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import org.junit.jupiter.api.Test;
 
 class RepositoryTest {

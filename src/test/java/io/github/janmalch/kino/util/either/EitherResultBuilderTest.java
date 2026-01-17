@@ -3,7 +3,7 @@ package io.github.janmalch.kino.util.either;
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.github.janmalch.kino.problem.Problem;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 import org.junit.jupiter.api.Test;
 
 class EitherResultBuilderTest {

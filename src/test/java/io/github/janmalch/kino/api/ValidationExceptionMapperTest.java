@@ -3,10 +3,10 @@ package io.github.janmalch.kino.api;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import jakarta.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-import javax.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
 
 class ValidationExceptionMapperTest {
