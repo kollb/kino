@@ -1,8 +1,11 @@
 package io.github.janmalch.kino.security;
 
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import javax.crypto.SecretKey;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.MalformedClaimException;
 import org.jose4j.jwt.consumer.InvalidJwtException;
@@ -16,7 +19,10 @@ public class JwtTokenFactory implements TokenFactory {
   private Logger log = LoggerFactory.getLogger(JwtTokenFactory.class);
 
   private long tokenDuration = TimeUnit.HOURS.toMillis(1);
-  private static final String SECRET_KEY = "jAzbOw76gakypHAYOsn5";
+  private static final String SECRET_KEY_STRING =
+      "jAzbOw76gakypHAYOsn5jAzbOw76gakypHAYOsn5"; // Extended to meet minimum length
+  private static final SecretKey SECRET_KEY =
+      Keys.hmacShaKeyFor(SECRET_KEY_STRING.getBytes(StandardCharsets.UTF_8));
   private static final SignatureAlgorithm ALGORITHM = SignatureAlgorithm.HS256;
 
   @Override
@@ -27,7 +33,7 @@ public class JwtTokenFactory implements TokenFactory {
     var tokenString =
         Jwts.builder()
             .setSubject(subject)
-            .signWith(ALGORITHM, SECRET_KEY)
+            .signWith(SECRET_KEY, ALGORITHM)
             .setExpiration(expiration)
             .compact();
     return new JwtToken(tokenString, subject, expiration);
@@ -67,7 +73,10 @@ public class JwtTokenFactory implements TokenFactory {
    */
   void validateToken(String token) throws MalformedJwtException, SignatureException {
     try {
-      Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token); // signatur prüfen
+      Jwts.parserBuilder()
+          .setSigningKey(SECRET_KEY)
+          .build()
+          .parseClaimsJws(token); // signatur prüfen
     } catch (ExpiredJwtException e) {
       // token is still valid, just expired
       // this can be expected
