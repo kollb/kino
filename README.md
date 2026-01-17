@@ -1,6 +1,7 @@
 |Build|Code Coverage|Code Quality|
 |--|--|--|
-|[![Build and Test](https://github.com/kollb/kino/actions/workflows/build.yml/badge.svg)](https://github.com/kollb/kino/actions/workflows/build.yml)|[![codecov](https://codecov.io/gh/JanMalch/kino/branch/master/graph/badge.svg)](https://codecov.io/gh/JanMalch/kino)|[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=JanMalch_kino&metric=alert_status)](https://sonarcloud.io/dashboard?id=JanMalch_kino)|
+|[![Build and Test](https://github.com/kollb/kino/actions/workflows/build.yml/badge.svg)](https://github.com/kollb/kino/actions/workflows/build.yml)|[![codecov](https://codecov.io/gh/kollb/kino/branch/master/graph/badge.svg)](https://codecov.io/gh/kollb/kino)|[![Quality Gate Status]([https://sonarcloud.io/api/project_badges/measure?project=JanMalch_kino&metric=alert_status](https://sonarcloud.io/api/project_badges/measure?project=kollb_kino&metric=alert_status
+))](https://sonarcloud.io/dashboard?id=kollb_kino)|
 
 # Kino
 
