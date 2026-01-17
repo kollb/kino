@@ -20,14 +20,15 @@ ADD --chown=jboss:jboss https://repo1.maven.org/maven2/com/mysql/mysql-connector
 
 # Copy WildFly configuration script and entrypoint
 COPY --chown=jboss:jboss configure-wildfly.cli /tmp/configure-wildfly.cli
-COPY --chown=jboss:jboss docker-entrypoint.sh /opt/jboss/docker-entrypoint.sh
+COPY --chown=jboss:jboss docker-entrypoint.sh /tmp/docker-entrypoint.sh
 
 # Configure WildFly datasource and prepare entrypoint script
 RUN /opt/jboss/wildfly/bin/jboss-cli.sh --file=/tmp/configure-wildfly.cli && \
     rm /tmp/configure-wildfly.cli && \
-    # Use /tmp for sed temp files to avoid permission issues on Windows
-    TMPDIR=/tmp sed -i 's/\r$//' /opt/jboss/docker-entrypoint.sh && \
-    chmod +x /opt/jboss/docker-entrypoint.sh
+    # Process entrypoint script to remove CRLF line endings and set permissions
+    sed 's/\r$//' /tmp/docker-entrypoint.sh > /opt/jboss/docker-entrypoint.sh && \
+    chmod +x /opt/jboss/docker-entrypoint.sh && \
+    rm /tmp/docker-entrypoint.sh
 
 # Copy WAR file from builder stage
 COPY --from=builder /app/target/kino.war /opt/jboss/wildfly/standalone/deployments/
