@@ -17,6 +17,7 @@ public class Seat implements Identifiable {
   @JoinColumn(name = "CINEMAHALL_ID")
   private CinemaHall cinemaHall;
 
+  @Column(name = "\"row\"")
   private String row;
 
   private int seatNumber;
