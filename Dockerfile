@@ -13,7 +13,7 @@ RUN mvn dependency:go-offline -B
 COPY src ./src
 
 # Build the application
-RUN mvn clean package -DskipTests -Dmaven.git.code.format.skip=true
+RUN mvn clean package -DskipTests -Dgit-code-format-maven-plugin.phase=none
 
 # Stage 2: Create runtime image
 FROM quay.io/wildfly/wildfly:27.0.1.Final-jdk17
