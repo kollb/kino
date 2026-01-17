@@ -31,13 +31,11 @@ RUN sed 's/\r$//' /tmp/docker-entrypoint-src.sh > /tmp/docker-entrypoint.sh && \
 RUN /opt/jboss/wildfly/bin/jboss-cli.sh --file=/tmp/configure-wildfly.cli && \
     rm /tmp/configure-wildfly.cli
 
-# Move processed entrypoint script to final location (requires root)
+# Move processed entrypoint script to final location and copy WAR file (requires root for mv)
 USER root
 RUN mv /tmp/docker-entrypoint.sh /opt/jboss/docker-entrypoint.sh
-USER jboss
-
-# Copy WAR file from builder stage
 COPY --from=builder /app/target/kino.war /opt/jboss/wildfly/standalone/deployments/
+USER jboss
 
 # Expose WildFly ports
 EXPOSE 8080 9990
