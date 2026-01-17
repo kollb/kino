@@ -11,11 +11,22 @@ A RESTful Cinema API built with Jakarta EE. The frontend is built with Angular a
 The easiest way to run the application is using Docker Compose:
 
 ```bash
-# Build and start the application
+# Build and start the application (includes MySQL with sample data)
 docker-compose up --build
 
 # Access the application at http://localhost:8080/kino
+# Admin panel: http://localhost:9990 (WildFly admin console)
 ```
+
+The Docker setup includes:
+- WildFly 27 application server with the Kino application deployed
+- MySQL 8.2 database with pre-loaded sample data (movies, users, cinema halls)
+- Automatic database initialization with schema and demo data
+
+**Default Login Credentials:**
+- Admin: `admin@account.de` / `admin`
+- Moderator: `moderator@account.de` / `moderator`
+- Customer: `customer@account.de` / `customer`
 
 ## Running the server
 
@@ -63,19 +74,23 @@ Steps:
 
 ### Database Setup
 -	Use SQL scripts in `sql-scripts` folder
--	Database name: `kino`
--	Database credentials:
+-	For Docker: Database is automatically initialized with `sql-scripts/init-docker.sql`
+-	Docker database credentials:
+    - User: `kino`
+    - Password: `kino`
+-	Local development credentials (for manual MySQL setup):
     - User: `jpa`
     - Password: `jpa`
 
-Or with Docker:
+Or with standalone Docker MySQL:
 ```bash
 docker run -d \
   -e MYSQL_ROOT_PASSWORD=root \
   -e MYSQL_DATABASE=kino \
-  -e MYSQL_USER=jpa \
-  -e MYSQL_PASSWORD=jpa \
+  -e MYSQL_USER=kino \
+  -e MYSQL_PASSWORD=kino \
   -p 3306:3306 \
+  -v $(pwd)/sql-scripts/init-docker.sql:/docker-entrypoint-initdb.d/init.sql \
   mysql:8.2
 ```
 
@@ -134,8 +149,11 @@ Test accounts for development:
 
 ## Technology Stack
 
-- **Backend:** Jakarta EE (Java 17), Jersey REST, Hibernate JPA
+- **Backend:** Jakarta EE 10 (Java 17), Jersey 3.1.5 (JAX-RS), Hibernate 6.4.4 (JPA)
 - **Frontend:** Angular 7, TypeScript, Material Design
-- **Database:** MySQL 8.x
-- **Server:** WildFly 27
+- **Database:** MySQL 8.2
+- **Server:** WildFly 27 (Jakarta EE 10)
 - **Build:** Maven 3.9+
+- **API Documentation:** OpenAPI 3 (Swagger)
+
+**Note:** This application has been migrated from Java EE 8 (javax.*) to Jakarta EE 10 (jakarta.*) for compatibility with WildFly 27.
