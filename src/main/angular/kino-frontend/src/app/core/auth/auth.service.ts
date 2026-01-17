@@ -3,7 +3,7 @@ import {DefaultService} from '@api/api/default.service';
 import {Observable, of} from 'rxjs';
 import {SignUpDto} from '@api/model/signUpDto';
 import {mapTo, mergeMap, pairwise, shareReplay, tap} from 'rxjs/operators';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {AccountInfoDto} from '@api/model/accountInfoDto';
 import {SessionStorageSubject} from './session-storage-subject.rxjs';

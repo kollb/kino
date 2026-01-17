@@ -35,7 +35,7 @@ a.mat-tab-link {
   &.mat-tab-label-active {
     color: #1e88e5;
 
-    .mat-icon /deep/ > svg {
+    .mat-icon ::ng-deep > svg {
       color: #1e88e5;
     }
   }

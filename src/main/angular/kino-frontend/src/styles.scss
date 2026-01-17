@@ -1,12 +1,12 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
+@use '@angular/material' as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-@include mat-core();
+@include mat.core();
 
 $mat-white: (
   50: #fafafa,
@@ -24,20 +24,20 @@ $mat-white: (
   A400: #fafafa,
   A700: #fafafa,
   contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $dark-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $dark-primary-text,
-    A200: $light-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
   )
 );
 
@@ -45,19 +45,25 @@ $mat-white: (
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$ermine-primary: mat-palette($mat-blue, 600);
-$ermine-accent: mat-palette($mat-blue, 600);
+$ermine-primary: mat.m2-define-palette(mat.$m2-blue-palette, 600);
+$ermine-accent: mat.m2-define-palette(mat.$m2-blue-palette, 600);
 
 // The warn palette is optional (defaults to red).
-$ermine-warn: mat-palette($mat-red);
+$ermine-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$ermine-theme: mat-light-theme($ermine-primary, $ermine-accent, $ermine-warn);
+$ermine-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $ermine-primary,
+    accent: $ermine-accent,
+    warn: $ermine-warn,
+  )
+));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($ermine-theme);
+@include mat.all-component-themes($ermine-theme);
 
 /* You can add global styles to this file, and also import other style files */
 

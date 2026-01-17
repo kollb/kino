@@ -88,7 +88,7 @@ export class NewReservationComponent implements OnInit {
         this.loading = false;
         return throwError(err);
       }),
-      mergeMap(id => this.router.navigateByUrl(`/reservation/${id}`, {preserveQueryParams: false}))
+      mergeMap(id => this.router.navigateByUrl(`/reservation/${id}`, {queryParamsHandling: ''}))
     ).subscribe(() => this.loading = false);
   }
 }

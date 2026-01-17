@@ -1,5 +1,5 @@
 :host {
-  & /deep/ .mat-chip-list-wrapper {
+  ::ng-deep .mat-chip-list-wrapper {
     justify-content: center;
   }
 }
