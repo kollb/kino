@@ -6,14 +6,14 @@ module add --name=com.mysql --resources=/tmp/mysql-connector-j.jar --dependencie
 # Add MySQL JDBC driver
 /subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql,driver-class-name=com.mysql.cj.jdbc.Driver)
 
-# Add datasource using environment variables
-# Default values are provided for cases where env vars are not set
+# Add datasource with default values
+# These will be overridden by environment variables at runtime via standalone.xml
 /subsystem=datasources/data-source=KinoDS:add( \
     jndi-name=java:jboss/datasources/KinoDS, \
     driver-name=mysql, \
-    connection-url="jdbc:mysql://${env.DB_HOST:mysql}:${env.DB_PORT:3306}/${env.DB_NAME:kino}?useLegacyDatetimeCode=false&serverTimezone=UTC", \
-    user-name=${env.DB_USER:kino}, \
-    password=${env.DB_PASSWORD:kino}, \
+    connection-url="jdbc:mysql://mysql:3306/kino?useLegacyDatetimeCode=false&serverTimezone=UTC", \
+    user-name=kino, \
+    password=kino, \
     use-java-context=true, \
     enabled=true, \
     validate-on-match=true, \
