@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MovieDto} from '@api/model/movieDto';
 
 @Component({
+  standalone: false,
   selector: 'app-movie-all-infos-card',
   templateUrl: './movie-all-infos-card.component.html',
   styleUrls: ['./movie-all-infos-card.component.scss']

@@ -10,23 +10,23 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: './../admin/admin.module#AdminModule'
+    loadChildren: () => import('./../admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: 'account',
-    loadChildren: './../account/account.module#AccountModule'
+    loadChildren: () => import('./../account/account.module').then(m => m.AccountModule)
   },
   {
     path: 'movie',
-    loadChildren: './../movie/movie.module#MovieModule'
+    loadChildren: () => import('./../movie/movie.module').then(m => m.MovieModule)
   },
   {
     path: 'reservation',
-    loadChildren: './../reservation/reservation.module#ReservationModule'
+    loadChildren: () => import('./../reservation/reservation.module').then(m => m.ReservationModule)
   },
   {
     path: 'login',
-    loadChildren: './../login/login.module#LoginModule'
+    loadChildren: () => import('./../login/login.module').then(m => m.LoginModule)
   },
   {
     path: '404',

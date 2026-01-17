@@ -6,6 +6,7 @@ import {catchError, mergeMap} from "rxjs/operators";
 import {throwError} from "rxjs";
 
 @Component({
+  standalone: false,
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']

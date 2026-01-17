@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 import {SeatForPresentationDto} from '@api/model/seatForPresentationDto';
 
 @Component({
+  standalone: false,
   selector: 'app-hall-overview[presentationId]',
   templateUrl: './hall-overview.component.html',
   styleUrls: ['./hall-overview.component.scss']

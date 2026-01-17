@@ -3,9 +3,10 @@ import {SignUpDto} from '@api/model/signUpDto';
 import {NgForm} from '@angular/forms';
 import {DefaultService} from '@api/api/default.service';
 import {AuthService} from '@core/auth';
-import {MatSnackBar} from "@angular/material";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
+  standalone: false,
   selector: 'app-profile[account]',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']

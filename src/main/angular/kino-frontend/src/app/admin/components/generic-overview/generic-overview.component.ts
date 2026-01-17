@@ -12,13 +12,14 @@ import {
 import {Observable} from "rxjs";
 import {CrudService} from "@admin/services";
 import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material";
+import {MatSnackBar} from "@angular/material/snack-bar";
 import {shareReplay, startWith} from "rxjs/operators";
 import {SuccessMessage} from "@api/model/successMessage";
 import {EntityDirective} from "@admin/directives";
 import {GenericFormComponent} from "../generic-form/generic-form.component";
 
 @Component({
+  standalone: false,
   selector: 'app-generic-overview',
   templateUrl: './generic-overview.component.html',
   styleUrls: ['./generic-overview.component.scss'],

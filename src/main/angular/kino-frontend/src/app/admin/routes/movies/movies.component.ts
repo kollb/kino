@@ -74,6 +74,7 @@ export class MovieCrudService implements CrudService<NewMovieDto, MovieDto> {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss'],

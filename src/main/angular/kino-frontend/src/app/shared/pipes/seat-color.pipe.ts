@@ -1,9 +1,10 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {SeatForPresentationDto} from '@api/model/seatForPresentationDto';
-import {ThemePalette} from '@angular/material';
+import {ThemePalette} from '@angular/material/core';
 import {Selectable} from '@shared/components';
 
 @Pipe({
+  standalone: false,
   name: 'seatColor'
 })
 export class SeatColorPipe implements PipeTransform {

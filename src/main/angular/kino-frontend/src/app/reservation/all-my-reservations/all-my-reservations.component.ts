@@ -8,6 +8,7 @@ import {PresentationService, ReservationService} from "@core/services";
 export type ReservationInfoWithPresentation = ReservationInfoDto & { presentation: PresentationWithSeatsDto };
 
 @Component({
+  standalone: false,
   selector: 'app-all-my-reservations',
   templateUrl: './all-my-reservations.component.html',
   styleUrls: ['./all-my-reservations.component.scss']

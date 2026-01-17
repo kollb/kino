@@ -54,6 +54,7 @@ export class ReservationCrudService implements CrudService<ReservationDto, Reser
 
 
 @Component({
+  standalone: false,
   selector: 'app-reservations',
   templateUrl: './reservations.component.html',
   styleUrls: ['./reservations.component.scss'],

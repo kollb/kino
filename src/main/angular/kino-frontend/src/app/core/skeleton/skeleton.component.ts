@@ -6,6 +6,7 @@ import {AuthService} from '@core/auth';
 import {Router} from "@angular/router";
 
 @Component({
+  standalone: false,
   selector: 'app-skeleton',
   templateUrl: './skeleton.component.html',
   styleUrls: ['./skeleton.component.scss']

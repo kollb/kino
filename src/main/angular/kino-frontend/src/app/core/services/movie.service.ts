@@ -1,8 +1,7 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 import {DefaultService} from '@api/api/default.service';
-import {untilDestroyed} from 'ngx-take-until-destroy';
-import {map, shareReplay, tap} from 'rxjs/operators';
+import {map, shareReplay, takeUntil, tap} from 'rxjs/operators';
 import {MovieDto} from '@api/model/movieDto';
 import {MovieOverviewDto} from '@api/model/movieOverviewDto';
 import {MovieInfoDto} from '@api/model/movieInfoDto';
@@ -14,10 +13,11 @@ export class MovieService implements OnDestroy {
 
   private movies$: Observable<MovieOverviewDto>;
   private readonly movieCache = new Map();
+  private destroy$ = new Subject<void>();
 
   constructor(private api: DefaultService) {
     this.movies$ = this.api.getCurrentMovies().pipe(
-      untilDestroyed(this),
+      takeUntil(this.destroy$),
       shareReplay(1)
     );
   }
@@ -25,7 +25,7 @@ export class MovieService implements OnDestroy {
   refresh() {
     this.movieCache.clear();
     this.movies$ = this.api.getCurrentMovies().pipe(
-      untilDestroyed(this),
+      takeUntil(this.destroy$),
       shareReplay(1)
     );
   }
@@ -54,5 +54,7 @@ export class MovieService implements OnDestroy {
 
 
   ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

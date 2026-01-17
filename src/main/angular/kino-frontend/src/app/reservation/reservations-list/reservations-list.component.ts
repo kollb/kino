@@ -3,6 +3,7 @@ import {ParseDatePipe} from "@shared/pipes";
 import {ReservationInfoWithPresentation} from "@reservation/all-my-reservations/all-my-reservations.component";
 
 @Component({
+  standalone: false,
   selector: 'app-reservations-list[reservations]',
   templateUrl: './reservations-list.component.html',
   styleUrls: ['./reservations-list.component.scss']

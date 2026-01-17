@@ -74,6 +74,7 @@ export class AccountCrudService implements CrudService<AccountInfoDto, AccountIn
 }
 
 @Component({
+  standalone: false,
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
   styleUrls: ['./accounts.component.scss'],

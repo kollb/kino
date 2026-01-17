@@ -16,11 +16,11 @@ app-register {
     max-width: 95vw;
     margin: 56px auto;
 
-  & /deep/ {
+  ::ng-deep {
     .mat-card {
       min-width: 300px;
 
-      &-header /deep/ .mat-card-header-text {
+      &-header ::ng-deep .mat-card-header-text {
         margin: 0 0 8px;
       }
 

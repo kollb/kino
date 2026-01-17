@@ -1,9 +1,8 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {DefaultService} from '@api/api/default.service';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {ReservationInfoDto} from '@api/model/reservationInfoDto';
-import {untilDestroyed} from 'ngx-take-until-destroy';
-import {map, shareReplay, tap} from 'rxjs/operators';
+import {map, shareReplay, takeUntil, tap} from 'rxjs/operators';
 import {SuccessMessage} from '@api/model/successMessage';
 import {ReservationDto} from '@api/model/reservationDto';
 
@@ -13,6 +12,7 @@ import {ReservationDto} from '@api/model/reservationDto';
 export class ReservationService implements OnDestroy {
 
   private myReservations$: Observable<ReservationInfoDto[]>;
+  private destroy$ = new Subject<void>();
 
   constructor(private api: DefaultService) {
     this.refresh();
@@ -20,7 +20,7 @@ export class ReservationService implements OnDestroy {
 
   refresh() {
     this.myReservations$ = this.api.getMyReservations().pipe(
-      untilDestroyed(this),
+      takeUntil(this.destroy$),
       shareReplay(1)
     );
   }
@@ -48,6 +48,8 @@ export class ReservationService implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }
