@@ -6,6 +6,7 @@ import {MovieInfoDto} from '@api/model/movieInfoDto';
 import {MovieService} from '@core/services';
 
 @Component({
+  standalone: false,
   selector: 'app-movie-overview',
   templateUrl: './running-movies.component.html',
   styleUrls: ['./running-movies.component.scss'],

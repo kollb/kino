@@ -64,6 +64,7 @@ export class CinemaHallCrudService implements CrudService<NewCinemaHallDto, Cine
 }
 
 @Component({
+  standalone: false,
   selector: 'app-cinemahall',
   templateUrl: './cinemahall.component.html',
   styleUrls: ['./cinemahall.component.scss'],

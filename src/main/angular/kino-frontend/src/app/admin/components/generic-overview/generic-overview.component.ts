@@ -19,6 +19,7 @@ import {EntityDirective} from "@admin/directives";
 import {GenericFormComponent} from "../generic-form/generic-form.component";
 
 @Component({
+  standalone: false,
   selector: 'app-generic-overview',
   templateUrl: './generic-overview.component.html',
   styleUrls: ['./generic-overview.component.scss'],

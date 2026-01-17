@@ -53,6 +53,7 @@ export class PriceCategoryCrudService implements CrudService<PriceCategoryBaseDt
 
 
 @Component({
+  standalone: false,
   selector: 'app-pricecategory',
   templateUrl: './pricecategory.component.html',
   styleUrls: ['./pricecategory.component.scss'],

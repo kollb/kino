@@ -3,6 +3,7 @@ import {PresentationDto} from "@api/model/presentationDto";
 import {ParseDatePipe} from "@shared/pipes";
 
 @Pipe({
+  standalone: false,
   name: 'filterPast'
 })
 export class FilterPastPipe implements PipeTransform {

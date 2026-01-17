@@ -2,6 +2,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {AccountInfoDto} from "@api/model/accountInfoDto";
 
 @Pipe({
+  standalone: false,
   name: 'hasMinRole'
 })
 export class HasMinRolePipe implements PipeTransform {

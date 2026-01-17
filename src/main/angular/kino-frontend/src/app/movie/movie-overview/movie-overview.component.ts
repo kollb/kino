@@ -4,6 +4,7 @@ import {CinemaHallService} from '@core/services';
 import {MovieDto} from '@api/model/movieDto';
 
 @Component({
+  standalone: false,
   selector: 'app-movie-overview',
   templateUrl: './movie-overview.component.html',
   styleUrls: ['./movie-overview.component.scss']

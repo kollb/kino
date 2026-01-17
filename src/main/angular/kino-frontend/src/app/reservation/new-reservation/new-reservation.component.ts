@@ -10,6 +10,7 @@ import {Observable, throwError} from 'rxjs';
 import {MovieDto} from '@api/model/movieDto';
 
 @Component({
+  standalone: false,
   selector: 'app-new-reservation',
   templateUrl: './new-reservation.component.html',
   styleUrls: ['./new-reservation.component.scss']
@@ -88,7 +89,7 @@ export class NewReservationComponent implements OnInit {
         this.loading = false;
         return throwError(err);
       }),
-      mergeMap(id => this.router.navigateByUrl(`/reservation/${id}`, {queryParamsHandling: ''}))
+      mergeMap(id => this.router.navigateByUrl(`/reservation/${id}`))
     ).subscribe(() => this.loading = false);
   }
 }

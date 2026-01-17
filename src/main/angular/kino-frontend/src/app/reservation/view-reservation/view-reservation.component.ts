@@ -5,6 +5,7 @@ import {SeatDto} from "@api/model/seatDto";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
+  standalone: false,
   selector: 'app-view-reservation',
   templateUrl: './view-reservation.component.html',
   styleUrls: ['./view-reservation.component.scss']
