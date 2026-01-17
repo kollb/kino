@@ -91,6 +91,18 @@ The project uses Google Java Format with git hooks:
 ```bash
 mvn git-code-format:validate-code-format
 ```
+
+## Security Notes
+
+**⚠️ Important:** This is a development/demonstration project. For production use, you must:
+
+1. **Change the JWT secret key** in `JwtTokenFactory.java` - externalize it to environment variables
+2. **Update database credentials** - use secure credentials and externalize them
+3. **Use HTTPS** - configure SSL/TLS certificates
+4. **Review and update** all hardcoded credentials and secrets
+5. **Consider upgrading** node-sass to dart-sass for better security (requires Angular update)
+
+The docker-compose.yml file is intended for **local development only** and should not be used in production.
   
 ## Dummy Login
 
