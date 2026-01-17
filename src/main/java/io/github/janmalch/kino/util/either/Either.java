@@ -1,10 +1,10 @@
 package io.github.janmalch.kino.util.either;
 
 import io.github.janmalch.kino.problem.Problem;
+import jakarta.annotation.Nullable;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.core.Response;
 import java.util.Objects;
-import javax.annotation.Nullable;
-import javax.validation.constraints.NotNull;
-import javax.ws.rs.core.Response;
 
 /**
  * Simple wrapper class for a result semantic. It can either carry a payload from a {@link

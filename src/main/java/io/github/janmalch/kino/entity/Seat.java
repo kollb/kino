@@ -1,8 +1,8 @@
 package io.github.janmalch.kino.entity;
 
+import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.*;
 
 @Entity
 public class Seat implements Identifiable {

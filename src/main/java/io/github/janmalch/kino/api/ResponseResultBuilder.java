@@ -2,9 +2,9 @@ package io.github.janmalch.kino.api;
 
 import io.github.janmalch.kino.control.ResultBuilder;
 import io.github.janmalch.kino.problem.Problem;
+import jakarta.ws.rs.core.Response;
 import java.util.HashMap;
 import java.util.Map;
-import javax.ws.rs.core.Response;
 
 public class ResponseResultBuilder<P> implements ResultBuilder<Response, P> {
 

@@ -1,8 +1,8 @@
 package io.github.janmalch.kino.problem;
 
+import jakarta.annotation.Nullable;
+import jakarta.ws.rs.core.Response;
 import java.util.Objects;
-import javax.annotation.Nullable;
-import javax.ws.rs.core.Response;
 
 /**
  * Class that provides common utility methods for working with problems to reduce boilerplate code.

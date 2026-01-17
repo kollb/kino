@@ -1,6 +1,6 @@
 package io.github.janmalch.kino.api.model.movie;
 
-import javax.validation.constraints.Min;
+import jakarta.validation.constraints.Min;
 
 public class NewMovieDto extends AbstractMovieDto {
   @Min(1)

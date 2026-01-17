@@ -5,9 +5,9 @@ import io.github.janmalch.kino.entity.Role;
 import io.github.janmalch.kino.repository.Repository;
 import io.github.janmalch.kino.repository.RepositoryFactory;
 import io.github.janmalch.kino.repository.specification.AccountByEmailSpec;
+import jakarta.ws.rs.core.SecurityContext;
 import java.security.Principal;
 import java.util.Optional;
-import javax.ws.rs.core.SecurityContext;
 
 public class TokenSecurityContext implements SecurityContext {
   private final Token token;

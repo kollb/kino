@@ -2,8 +2,8 @@ package io.github.janmalch.kino.repository.specification;
 
 import io.github.janmalch.kino.entity.Movie;
 import io.github.janmalch.kino.repository.Repository;
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 public class CurrentMoviesSpec implements Specification<Movie> {
 

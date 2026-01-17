@@ -1,10 +1,10 @@
 package io.github.janmalch.kino.entity;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-import javax.persistence.*;
-import javax.validation.constraints.Email;
 
 @Entity
 public class Account implements Identifiable {

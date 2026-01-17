@@ -14,7 +14,7 @@ import io.github.janmalch.kino.security.JwtTokenFactory;
 import io.github.janmalch.kino.security.PasswordManager;
 import io.github.janmalch.kino.security.Token;
 import io.github.janmalch.kino.util.Mapper;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

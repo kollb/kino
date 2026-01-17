@@ -9,7 +9,7 @@ import io.github.janmalch.kino.problem.Problem;
 import io.github.janmalch.kino.repository.Repository;
 import io.github.janmalch.kino.repository.RepositoryFactory;
 import io.github.janmalch.kino.util.Mapper;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 public class UpdateMovieControl extends ManagingControl<SuccessMessage> {
 

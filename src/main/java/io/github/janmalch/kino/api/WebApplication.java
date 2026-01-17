@@ -4,7 +4,7 @@ import io.github.janmalch.kino.api.boundary.*;
 import io.github.janmalch.kino.security.AuthorizationFilter;
 import io.github.janmalch.kino.security.RefreshTokenResponseFilter;
 import io.swagger.jaxrs.config.BeanConfig;
-import javax.ws.rs.ApplicationPath;
+import jakarta.ws.rs.ApplicationPath;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 

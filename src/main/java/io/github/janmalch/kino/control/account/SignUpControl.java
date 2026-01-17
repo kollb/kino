@@ -15,8 +15,8 @@ import io.github.janmalch.kino.repository.specification.Specification;
 import io.github.janmalch.kino.security.PasswordManager;
 import io.github.janmalch.kino.util.Mapper;
 import io.github.janmalch.kino.util.ReflectionMapper;
+import jakarta.ws.rs.core.Response;
 import java.util.Optional;
-import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

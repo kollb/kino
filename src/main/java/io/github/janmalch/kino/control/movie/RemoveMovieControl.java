@@ -7,7 +7,7 @@ import io.github.janmalch.kino.entity.Movie;
 import io.github.janmalch.kino.problem.Problem;
 import io.github.janmalch.kino.repository.Repository;
 import io.github.janmalch.kino.repository.RepositoryFactory;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 public class RemoveMovieControl extends ManagingControl<SuccessMessage> {
 
