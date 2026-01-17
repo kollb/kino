@@ -18,19 +18,24 @@ FROM quay.io/wildfly/wildfly:27.0.1.Final-jdk17
 # Download MySQL JDBC driver
 ADD --chown=jboss:jboss https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.2.0/mysql-connector-j-8.2.0.jar /tmp/mysql-connector-j.jar
 
-# Copy WildFly configuration script and entrypoint
+# Copy WildFly configuration script
 COPY --chown=jboss:jboss configure-wildfly.cli /tmp/configure-wildfly.cli
-COPY --chown=jboss:jboss docker-entrypoint.sh /opt/jboss/docker-entrypoint.sh
 
-# Configure WildFly datasource and prepare entrypoint script
+# Copy and process entrypoint script to remove potential CRLF line endings  
+COPY --chown=jboss:jboss docker-entrypoint.sh /tmp/docker-entrypoint-src.sh
+RUN sed 's/\r$//' /tmp/docker-entrypoint-src.sh > /tmp/docker-entrypoint.sh && \
+    chmod +x /tmp/docker-entrypoint.sh && \
+    rm /tmp/docker-entrypoint-src.sh
+
+# Configure WildFly datasource and move entrypoint script
 RUN /opt/jboss/wildfly/bin/jboss-cli.sh --file=/tmp/configure-wildfly.cli && \
-    rm /tmp/configure-wildfly.cli && \
-    # Use /tmp for sed temp files to avoid permission issues on Windows
-    TMPDIR=/tmp sed -i 's/\r$//' /opt/jboss/docker-entrypoint.sh && \
-    chmod +x /opt/jboss/docker-entrypoint.sh
+    rm /tmp/configure-wildfly.cli
 
-# Copy WAR file from builder stage
+# Move processed entrypoint script to final location and copy WAR file (requires root for mv)
+USER root
+RUN mv /tmp/docker-entrypoint.sh /opt/jboss/docker-entrypoint.sh
 COPY --from=builder /app/target/kino.war /opt/jboss/wildfly/standalone/deployments/
+USER jboss
 
 # Expose WildFly ports
 EXPOSE 8080 9990
