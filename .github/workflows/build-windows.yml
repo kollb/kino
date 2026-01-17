@@ -1,0 +1,60 @@
+name: Build and Test (Windows x64)
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+permissions:
+  contents: read
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Shallow clones should be disabled for better analysis
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    
+    - name: Build with Maven
+      run: mvn clean package -DskipTests
+    
+    - name: Run Tests with Logs
+      run: |
+        echo "=== Starting Tests ==="
+        mvn test
+        echo "=== Tests Completed ==="
+    
+    - name: Display Test Logs
+      if: always()
+      run: |
+        echo "=== Test Results Summary ==="
+        Get-ChildItem -Path target\surefire-reports -Filter *.txt -Recurse | ForEach-Object {
+          Write-Host "`n========================================" -ForegroundColor Cyan
+          Write-Host "File: $($_.Name)" -ForegroundColor Yellow
+          Write-Host "========================================" -ForegroundColor Cyan
+          Get-Content $_.FullName
+        }
+      shell: pwsh
+    
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results-windows
+        path: target/surefire-reports/
+    
+    - name: Upload WAR artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: kino-war-windows
+        path: target/kino.war
