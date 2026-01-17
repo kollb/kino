@@ -1,0 +1,30 @@
+<form #myForm="ngForm" (ngSubmit)="login(myForm)" >
+  <mat-card class="mat-elevation-z0">
+    <mat-card-header>
+      <mat-card-title><h1 class="mat-display-1 mb-16">Willkommen zurück!</h1></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <input matInput type="email" name="email" ngModel required/>
+        <mat-label>Email-Adresse</mat-label>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input matInput type="password" name="password" ngModel required/>
+        <mat-label>Passwort</mat-label>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-stroked-button color="primary" type="submit" [disabled]="myForm.invalid || loading">
+        Login
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+<details open>
+  <summary>Login as ...</summary>
+  <p class="mat-error mt-8">Diese Buttons werden später entfernt ...</p>
+  <button *ngFor="let acc of accounts" mat-raised-button color="warn"
+        (click)="login(getCredentials(acc))">{{ acc }}</button>
+</details>
