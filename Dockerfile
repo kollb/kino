@@ -18,6 +18,16 @@ RUN mvn clean package -DskipTests -Dgit-code-format-maven-plugin.phase=none
 # Stage 2: Create runtime image
 FROM quay.io/wildfly/wildfly:27.0.1.Final-jdk17
 
+# Download MySQL JDBC driver
+ADD --chown=jboss:jboss https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.2.0/mysql-connector-j-8.2.0.jar /tmp/mysql-connector-j.jar
+
+# Copy WildFly configuration script
+COPY --chown=jboss:jboss configure-wildfly.cli /tmp/configure-wildfly.cli
+
+# Configure WildFly datasource
+RUN /opt/jboss/wildfly/bin/jboss-cli.sh --file=/tmp/configure-wildfly.cli && \
+    rm /tmp/configure-wildfly.cli
+
 # Copy WAR file from builder stage
 COPY --from=builder /app/target/kino.war /opt/jboss/wildfly/standalone/deployments/
 
