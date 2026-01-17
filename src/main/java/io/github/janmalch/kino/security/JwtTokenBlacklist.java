@@ -1,9 +1,9 @@
 package io.github.janmalch.kino.security;
 
+import jakarta.ejb.Singleton;
+import jakarta.ejb.Startup;
 import java.util.HashSet;
 import java.util.Set;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
 
 /**
  * A Set of Token to be added to JwtTokenBlacklist when user logout from a session. This is

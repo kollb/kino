@@ -2,10 +2,10 @@ package io.github.janmalch.kino.repository;
 
 import io.github.janmalch.kino.repository.specification.Specification;
 import io.github.janmalch.kino.util.Manageable;
+import jakarta.persistence.Query;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import javax.persistence.Query;
 
 /**
  * Generic Repository interface to define common CRUD methods

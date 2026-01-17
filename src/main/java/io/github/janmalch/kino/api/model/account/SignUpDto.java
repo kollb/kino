@@ -1,7 +1,7 @@
 package io.github.janmalch.kino.api.model.account;
 
+import jakarta.json.bind.annotation.JsonbDateFormat;
 import java.time.LocalDate;
-import javax.json.bind.annotation.JsonbDateFormat;
 
 public class SignUpDto extends AbstractAccountDto {
 

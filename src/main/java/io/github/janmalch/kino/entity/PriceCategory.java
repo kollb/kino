@@ -1,8 +1,8 @@
 package io.github.janmalch.kino.entity;
 
+import jakarta.persistence.*;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.*;
 
 @Entity
 public class PriceCategory implements Identifiable {

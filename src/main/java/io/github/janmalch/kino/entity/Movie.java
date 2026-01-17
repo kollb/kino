@@ -1,7 +1,7 @@
 package io.github.janmalch.kino.entity;
 
+import jakarta.persistence.*;
 import java.util.List;
-import javax.persistence.*;
 
 @Entity
 public class Movie implements Identifiable {

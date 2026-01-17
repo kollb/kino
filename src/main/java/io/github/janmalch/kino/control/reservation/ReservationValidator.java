@@ -8,10 +8,10 @@ import io.github.janmalch.kino.entity.Role;
 import io.github.janmalch.kino.problem.Problem;
 import io.github.janmalch.kino.problem.Problems;
 import io.github.janmalch.kino.util.either.EitherResultBuilder;
+import jakarta.ws.rs.core.Response;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import javax.ws.rs.core.Response;
 
 public class ReservationValidator implements Validator<ReservationDto> {
 
@@ -31,9 +31,7 @@ public class ReservationValidator implements Validator<ReservationDto> {
     var result = seatsForPresentationControl.execute(new EitherResultBuilder<>());
 
     var availableIds =
-        result
-            .getSuccess()
-            .stream() // Stream includes all seats for cinemaHall
+        result.getSuccess().stream() // Stream includes all seats for cinemaHall
             .filter(
                 seatForPresentation ->
                     !seatForPresentation.isTaken()) // choose only available seats

@@ -2,6 +2,8 @@ package io.github.janmalch.kino.api;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import jakarta.ws.rs.container.ContainerResponseContext;
+import jakarta.ws.rs.core.*;
 import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -10,8 +12,6 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import javax.ws.rs.container.ContainerResponseContext;
-import javax.ws.rs.core.*;
 import org.junit.jupiter.api.Test;
 
 class CORSFilterTest {

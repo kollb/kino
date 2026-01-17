@@ -1,10 +1,10 @@
 package io.github.janmalch.kino.problem;
 
+import jakarta.annotation.Nullable;
+import jakarta.ws.rs.core.Response;
 import java.net.URI;
 import java.util.Collections;
 import java.util.Map;
-import javax.annotation.Nullable;
-import javax.ws.rs.core.Response;
 
 /**
  * Interface to describe a problem, defined by <a href="https://tools.ietf.org/html/rfc7807">RFC

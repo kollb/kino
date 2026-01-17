@@ -1,13 +1,13 @@
 package io.github.janmalch.kino.problem;
 
 import io.github.janmalch.kino.util.Contract;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriBuilder;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import javax.validation.constraints.NotNull;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
 
 /** Builder, based on the builder pattern, to create a {@link Problem}. */
 public class ProblemBuilder {

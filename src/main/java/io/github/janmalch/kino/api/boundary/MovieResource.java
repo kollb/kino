@@ -1,9 +1,7 @@
 package io.github.janmalch.kino.api.boundary;
 
 import io.github.janmalch.kino.api.ResponseResultBuilder;
-import io.github.janmalch.kino.api.SuccessMessage;
 import io.github.janmalch.kino.api.model.movie.MovieDto;
-import io.github.janmalch.kino.api.model.movie.MovieOverviewDto;
 import io.github.janmalch.kino.api.model.movie.NewMovieDto;
 import io.github.janmalch.kino.control.Control;
 import io.github.janmalch.kino.control.generic.GetEntitiesControl;
@@ -11,18 +9,18 @@ import io.github.janmalch.kino.control.generic.GetEntityControl;
 import io.github.janmalch.kino.control.movie.*;
 import io.github.janmalch.kino.entity.Movie;
 import io.github.janmalch.kino.security.Secured;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import javax.annotation.security.RolesAllowed;
-import javax.validation.Valid;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.validation.Valid;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Path("movie")
-@Api
+@Tag(name = "movie")
 public class MovieResource {
 
   private Logger log = LoggerFactory.getLogger(MovieResource.class);
@@ -31,10 +29,7 @@ public class MovieResource {
   @Secured
   @RolesAllowed("MODERATOR")
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(
-      value = "Returns the list of all movies",
-      response = MovieDto.class,
-      responseContainer = "List")
+  @Operation(summary = "Returns the list of all movies")
   public Response getAllMovies() {
     var control = new GetEntitiesControl<>(Movie.class, new MovieDtoMapper());
     return control.execute(new ResponseResultBuilder<>());
@@ -45,7 +40,7 @@ public class MovieResource {
   @RolesAllowed("MODERATOR")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(value = "Returns the ID for the newly created movie", response = Long.class)
+  @Operation(summary = "Returns the ID for the newly created movie")
   public Response newMovie(@Valid NewMovieDto movieDto) {
     log.info(movieDto.toString());
     Control<Long> control = new NewMovieControl(movieDto);
@@ -57,7 +52,7 @@ public class MovieResource {
   @Secured
   @RolesAllowed("MODERATOR")
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(value = "Deletes the movie for the given ID", response = SuccessMessage.class)
+  @Operation(summary = "Deletes the movie for the given ID")
   public Response deleteMovie(@PathParam("id") long id) {
     var control = new RemoveMovieControl(id);
     return control.execute(new ResponseResultBuilder<>());
@@ -66,7 +61,7 @@ public class MovieResource {
   @Path("{id}")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(value = "Retrieves the movie for the given ID", response = MovieDto.class)
+  @Operation(summary = "Retrieves the movie for the given ID")
   public Response getMovie(@PathParam("id") long id) {
     var control = new GetEntityControl<>(id, Movie.class, new MovieDtoMapper());
     return control.execute(new ResponseResultBuilder<>());
@@ -78,9 +73,7 @@ public class MovieResource {
   @RolesAllowed("MODERATOR")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(
-      value = "Partially updates the movie for the given ID",
-      response = SuccessMessage.class)
+  @Operation(summary = "Partially updates the movie for the given ID")
   public Response updateMovie(MovieDto movieDto, @PathParam("id") long id) {
     var control = new UpdateMovieControl(movieDto, id);
     return control.execute(new ResponseResultBuilder<>());
@@ -89,7 +82,7 @@ public class MovieResource {
   @Path("current")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(value = "Returns the list of all running movies", response = MovieOverviewDto.class)
+  @Operation(summary = "Returns the list of all running movies")
   public Response getCurrentMovies() {
     var control = new GetCurrentMoviesControl();
     return control.execute(new ResponseResultBuilder<>());

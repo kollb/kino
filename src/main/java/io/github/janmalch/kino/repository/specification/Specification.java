@@ -1,6 +1,6 @@
 package io.github.janmalch.kino.repository.specification;
 
-import javax.persistence.TypedQuery;
+import jakarta.persistence.TypedQuery;
 
 /**
  * Interface to create abstract queries

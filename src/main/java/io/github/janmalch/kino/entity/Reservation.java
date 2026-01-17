@@ -1,10 +1,10 @@
 package io.github.janmalch.kino.entity;
 
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import javax.persistence.*;
 
 @Entity
 public class Reservation implements Identifiable {

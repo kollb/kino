@@ -10,7 +10,7 @@ import io.github.janmalch.kino.repository.RepositoryFactory;
 import io.github.janmalch.kino.repository.specification.AccountByEmailSpec;
 import io.github.janmalch.kino.repository.specification.Specification;
 import io.github.janmalch.kino.util.ReflectionMapper;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

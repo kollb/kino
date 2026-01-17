@@ -1,8 +1,8 @@
 package io.github.janmalch.kino.api.model.presentation;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import java.util.Date;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 public class NewPresentationDto {
 

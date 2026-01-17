@@ -1,8 +1,8 @@
 package io.github.janmalch.kino.repository;
 
 import io.github.janmalch.kino.util.functions.VoidConsumer;
+import jakarta.persistence.EntityManager;
 import java.util.function.Supplier;
-import javax.persistence.EntityManager;
 
 /**
  * Interfaces to separate transaction handling. Provides two methods to wrap any lambda in a

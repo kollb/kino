@@ -2,8 +2,8 @@ package io.github.janmalch.kino.problem;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import jakarta.ws.rs.core.Response;
 import java.net.URI;
-import javax.ws.rs.core.Response;
 import org.junit.jupiter.api.Test;
 
 class ProblemImplTest {

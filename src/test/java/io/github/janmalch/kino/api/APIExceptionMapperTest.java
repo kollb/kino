@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import io.github.janmalch.kino.problem.Problem;
 import io.github.janmalch.kino.problem.ThrowableProblem;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 import org.junit.jupiter.api.Test;
 
 class APIExceptionMapperTest {

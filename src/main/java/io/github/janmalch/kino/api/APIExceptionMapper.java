@@ -2,10 +2,10 @@ package io.github.janmalch.kino.api;
 
 import io.github.janmalch.kino.problem.Problem;
 import io.github.janmalch.kino.problem.ThrowableProblem;
-import javax.ws.rs.ForbiddenException;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
+import jakarta.ws.rs.ForbiddenException;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
+import jakarta.ws.rs.ext.Provider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

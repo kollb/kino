@@ -2,10 +2,10 @@ package io.github.janmalch.kino.control.validation;
 
 import io.github.janmalch.kino.problem.Problem;
 import io.github.janmalch.kino.util.BeanUtils;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.core.Response;
 import java.util.*;
 import java.util.stream.Stream;
-import javax.validation.constraints.NotNull;
-import javax.ws.rs.core.Response;
 
 public class BeanValidations<T> {
 
