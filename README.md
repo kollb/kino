@@ -94,13 +94,24 @@ mvn git-code-format:validate-code-format
 
 ## Security Notes
 
+**⚠️ CRITICAL - Angular Security Issues:**
+
+Angular 7.2.x has **multiple unpatched XSS vulnerabilities** with no fixes available for this version:
+- XSRF Token Leakage via Protocol-Relative URLs
+- XSS via Unsanitized SVG Script Attributes  
+- Stored XSS via SVG Animation, SVG URL and MathML Attributes
+
+**These vulnerabilities only have patches in Angular 19+, 20+, and 21+.**
+
+**RECOMMENDATION:** Upgrade to Angular 19+ (LTS) for security patches. This requires significant code changes and was beyond the scope of this modernization effort.
+
 **⚠️ Important:** This is a development/demonstration project. For production use, you must:
 
-1. **Change the JWT secret key** in `JwtTokenFactory.java` - externalize it to environment variables
-2. **Update database credentials** - use secure credentials and externalize them
-3. **Use HTTPS** - configure SSL/TLS certificates
-4. **Review and update** all hardcoded credentials and secrets
-5. **Consider upgrading** node-sass to dart-sass for better security (requires Angular update)
+1. **URGENT: Upgrade Angular to 19+ or later** to fix XSS vulnerabilities
+2. **Change the JWT secret key** in `JwtTokenFactory.java` - externalize it to environment variables
+3. **Update database credentials** - use secure credentials and externalize them
+4. **Use HTTPS** - configure SSL/TLS certificates
+5. **Review and update** all hardcoded credentials and secrets
 
 The docker-compose.yml file is intended for **local development only** and should not be used in production.
   

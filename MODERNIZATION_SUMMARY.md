@@ -75,11 +75,18 @@ mvn test
 ```
 
 ## Security Status
-✅ No known vulnerabilities in dependencies (verified)
+✅ No known vulnerabilities in Java dependencies (verified)
 ✅ CodeQL security scan passed
 ✅ Critical CVEs fixed (Log4j, Jackson, etc.)
+✅ jose4j updated to 0.9.6 (fixed DoS vulnerability)
+
+⚠️ **CRITICAL Angular Security Issues:**
+- Angular 7.2.x has **multiple unpatched XSS vulnerabilities**
+- Patches only available in Angular 19+, 20+, and 21+
+- **URGENT:** Upgrade to Angular 19+ required for production use
 
 ⚠️ **Production Considerations:**
+- **Priority 1:** Upgrade Angular to 19+ or later
 - Change hardcoded JWT secret key
 - Update database credentials
 - Enable HTTPS/SSL
@@ -93,12 +100,13 @@ To minimize breaking changes:
 - API endpoints unchanged
 
 ## Next Steps for Production
-1. Update JWT secret to environment variable
-2. Externalize database credentials
-3. Configure SSL/TLS certificates
-4. Set up proper logging
-5. Consider Angular upgrade to latest LTS (requires more work)
+1. **CRITICAL: Upgrade Angular to 19+ or later** to fix XSS vulnerabilities
+2. Update JWT secret to environment variable
+3. Externalize database credentials
+4. Configure SSL/TLS certificates
+5. Set up proper logging
 6. Add monitoring and metrics
+7. Security audit and penetration testing
 
 ## Build Verification
 - ✅ Maven build: SUCCESS
