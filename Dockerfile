@@ -22,9 +22,10 @@ ADD --chown=jboss:jboss https://repo1.maven.org/maven2/com/mysql/mysql-connector
 COPY --chown=jboss:jboss configure-wildfly.cli /tmp/configure-wildfly.cli
 COPY --chown=jboss:jboss docker-entrypoint.sh /opt/jboss/docker-entrypoint.sh
 
-# Configure WildFly datasource
+# Configure WildFly datasource and prepare entrypoint script
 RUN /opt/jboss/wildfly/bin/jboss-cli.sh --file=/tmp/configure-wildfly.cli && \
     rm /tmp/configure-wildfly.cli && \
+    sed -i 's/\r$//' /opt/jboss/docker-entrypoint.sh && \
     chmod +x /opt/jboss/docker-entrypoint.sh
 
 # Copy WAR file from builder stage
