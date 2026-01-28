@@ -23,6 +23,7 @@ services:
   wildfly:
     build: .
     container_name: kino-wildfly
+    restart: on-failure:5
     depends_on:
       mysql:
         condition: service_healthy

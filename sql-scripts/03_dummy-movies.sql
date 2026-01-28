@@ -72,50 +72,71 @@ VALUES ('35', 'A', '1', '4'),
 -- MOVIE
 INSERT INTO `Movie` (`id`, `ageRating`, `duration`, `name`, `imageURL`, `PRICECATEGORY_ID`)
 VALUES
--- Captain Marvel, FSK 12
-('1', '12', '2.0', 'Captain Marvel',
- 'https://media.services.cinergy.ch/media/box1600/7ff00589a6ac72d438fff3fe550a0b81159159ad.jpg',
+-- Dune: Part Two, FSK 12
+('1', '12', '2.75', 'Dune: Teil Zwei',
+ 'https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg',
  '3'),
--- Brightburn, FSK 18
-('2', '18', '1.5', 'Brightburn',
- 'https://pbs.twimg.com/media/D5_XG4kU0AA4Jrt.jpg',
- '2'),
--- Frozen 2, FSK 0
-('3', '0', '1.75', 'Frozen 2',
- 'https://indac.org/wp-content/uploads/2019/02/33796-1288x724.jpg',
- '1'),
--- Jonny English 3, FSK 0
-('4', '0', '1.75', 'Jonny English 3',
- 'https://images-na.ssl-images-amazon.com/images/I/81ZsP3ZkrVL._RI_SX300_.jpg',
- '2'),
--- Bohemian Rhapsody, FSK 18
-('5', '18', '2.25', 'Bohemian Rhapsody',
- 'https://image.film.at/images/cfs_poster_240w_339h/3014298/bohemian-rhapsody-plakat.jpg',
+-- Oppenheimer, FSK 12
+('2', '12', '3.0', 'Oppenheimer',
+ 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
  '4'),
--- Sharknado 4 - The 4th Awakens, FSK 13
-('6', '16', '1.5', 'Sharknado 4 - The 4th Awakens',
- 'https://images-na.ssl-images-amazon.com/images/I/81dePEv10hL._SL1500_.jpg',
- '4');
+-- Barbie, FSK 6
+('3', '6', '1.95', 'Barbie',
+ 'https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg',
+ '1'),
+-- Guardians of the Galaxy Vol. 3, FSK 12
+('4', '12', '2.5', 'Guardians of the Galaxy Vol. 3',
+ 'https://image.tmdb.org/t/p/w500/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg',
+ '2'),
+-- Spider-Man: Across the Spider-Verse, FSK 6
+('5', '6', '2.25', 'Spider-Man: Across the Spider-Verse',
+ 'https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg',
+ '2'),
+-- John Wick: Chapter 4, FSK 16
+('6', '16', '2.75', 'John Wick: Kapitel 4',
+ 'https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg',
+ '1'),
+-- Indiana Jones 5, FSK 12
+('7', '12', '2.5', 'Indiana Jones und das Rad des Schicksals',
+ 'https://image.tmdb.org/t/p/w500/Af4bXE63pVsb2FtbW8uYIyPBadD.jpg',
+ '3'),
+-- Avatar: The Way of Water, FSK 12
+('8', '12', '3.2', 'Avatar: The Way of Water',
+ 'https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg',
+ '4'),
+-- Top Gun: Maverick, FSK 12
+('9', '12', '2.2', 'Top Gun: Maverick',
+ 'https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg',
+ '3'),
+-- Fast X, FSK 12
+('10', '12', '2.25', 'Fast & Furious 10',
+ 'https://image.tmdb.org/t/p/w500/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
+ '2');
 
 -- PRESENTATION
 INSERT INTO `Presentation` (`id`, `date`, `CINEMAHALL_ID`, `MOVIE_ID`)
-VALUES ('1', '2019-07-01 16:00:00', '4', '1'),  -- Captain Marvel, Luxemburg-Saal
-       ('2', '2019-06-02 16:00:00', '2', '2'),  -- Brightburn, Saal 2
-       ('3', '2019-07-03 18:00:00', '1', '2'),  -- Brightburn, Luxemburg-Saal
-       ('4', '2019-07-04 20:00:00', '1', '2'),  -- Brightburn, Luxemburg-Saal
-       ('5', '2019-07-04 20:00:00', '2', '2'),  -- Brightburn, Luxemburg-Saal
-       ('6', '2019-07-04 20:00:00', '1', '4'),  -- Jonny English 3, Luxemburg-Saal
-       ('7', '2019-07-04 22:00:00', '3', '4'),  -- Jonny English 3, Saal 3
-       ('8', '2019-07-06 20:00:00', '1', '4'),  -- Jonny English 3, Luxemburg-Saal
-       ('9', '2019-07-12 22:00:00', '3', '4'),  -- Jonny English 3, Saal 3
-       ('10', '2019-08-12 20:00:00', '1', '4'), -- Jonny English 3, Luxemburg-Saal
-       ('11', '2019-08-13 22:00:00', '3', '4'), -- Jonny English 3, Saal 3
-       ('12', '2019-07-12 16:00:00', '2', '5'), -- Bohemian Rhapsody, Saal 2
-       ('13', '2019-07-12 18:00:00', '3', '5'), -- Bohemian Rhapsody, Saal 3
-       ('14', '2019-07-12 20:00:00', '4', '5'), -- Bohemian Rhapsody, Europasaal
-       ('15', '2019-07-13 14:00:00', '1', '5'), -- Bohemian Rhapsody, Luxemburg-Saal
-       ('16', '2019-07-13 16:00:00', '3', '5'), -- Bohemian Rhapsody, Saal 3
-       ('17', '2019-07-13 18:00:00', '2', '5'), -- Bohemian Rhapsody, Saal 2
-       ('18', '2019-07-13 20:00:00', '4', '5'), -- Bohemian Rhapsody, Europasaal
-       ('19', '2019-07-17 20:15:00', '2', '6'), -- Sharknado 4 - The 4th Awakens, Saal 2
-       ('20', '2019-07-12 20:15:00', '2', '3'); -- Frozen 2, Saal 2
+VALUES ('1', '2026-02-15 16:00:00', '4', '1'),  -- Dune: Teil Zwei, Europasaal
+       ('2', '2026-02-15 19:30:00', '1', '1'),  -- Dune: Teil Zwei, Luxemburg-Saal
+       ('3', '2026-02-16 20:00:00', '2', '2'),  -- Oppenheimer, Saal 2
+       ('4', '2026-02-16 16:30:00', '3', '3'),  -- Barbie, Saal 3
+       ('5', '2026-02-17 18:00:00', '1', '4'),  -- Guardians of the Galaxy Vol. 3, Luxemburg-Saal
+       ('6', '2026-02-17 20:30:00', '2', '5'),  -- Spider-Man: Across the Spider-Verse, Saal 2
+       ('7', '2026-02-18 21:00:00', '4', '6'),  -- John Wick: Kapitel 4, Europasaal
+       ('8', '2026-02-18 17:00:00', '3', '7'),  -- Indiana Jones 5, Saal 3
+       ('9', '2026-02-19 19:00:00', '1', '8'),  -- Avatar: The Way of Water, Luxemburg-Saal
+       ('10', '2026-02-19 21:30:00', '2', '9'), -- Top Gun: Maverick, Saal 2
+       ('11', '2026-02-20 16:00:00', '3', '10'), -- Fast & Furious 10, Saal 3
+       ('12', '2026-02-20 18:30:00', '4', '1'), -- Dune: Teil Zwei, Europasaal
+       ('13', '2026-02-21 20:00:00', '1', '2'), -- Oppenheimer, Luxemburg-Saal
+       ('14', '2026-02-21 17:30:00', '2', '3'), -- Barbie, Saal 2
+       ('15', '2026-02-22 19:15:00', '3', '4'), -- Guardians of the Galaxy Vol. 3, Saal 3
+       ('16', '2026-02-22 21:45:00', '4', '5'), -- Spider-Man: Across the Spider-Verse, Europasaal
+       ('17', '2026-02-23 18:00:00', '1', '6'), -- John Wick: Kapitel 4, Luxemburg-Saal
+       ('18', '2026-02-23 20:15:00', '2', '7'), -- Indiana Jones 5, Saal 2
+       ('19', '2026-02-24 16:30:00', '3', '8'), -- Avatar: The Way of Water, Saal 3
+       ('20', '2026-02-24 19:00:00', '4', '9'), -- Top Gun: Maverick, Europasaal
+       ('21', '2026-02-25 21:00:00', '1', '10'), -- Fast & Furious 10, Luxemburg-Saal
+       ('22', '2026-02-26 14:30:00', '2', '3'), -- Barbie (Matinee), Saal 2
+       ('23', '2026-02-26 17:00:00', '3', '5'), -- Spider-Man (Nachmittagsvorstellung), Saal 3
+       ('24', '2026-02-27 20:30:00', '4', '2'), -- Oppenheimer, Europasaal
+       ('25', '2026-02-28 18:45:00', '1', '8'); -- Avatar: The Way of Water, Luxemburg-Saal
