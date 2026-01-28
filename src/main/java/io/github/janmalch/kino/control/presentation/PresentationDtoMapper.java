@@ -9,7 +9,7 @@ public class PresentationDtoMapper implements Mapper<Presentation, PresentationD
   public PresentationDto map(Presentation source) {
     var dto = new PresentationDto();
     dto.setId(source.getId());
-    dto.setCinemaHallId(source.getCinemaHall().getId());
+    dto.setCinemaHallId(source.getCinemaHall() != null ? source.getCinemaHall().getId() : 0);
     dto.setDate(source.getDate());
     return dto;
   }

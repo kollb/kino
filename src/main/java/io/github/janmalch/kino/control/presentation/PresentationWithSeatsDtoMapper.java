@@ -15,7 +15,7 @@ public class PresentationWithSeatsDtoMapper
   public PresentationWithSeatsDto map(Presentation source) {
     var dto = new PresentationWithSeatsDto();
     dto.setId(source.getId());
-    dto.setCinemaHallId(source.getCinemaHall().getId());
+    dto.setCinemaHallId(source.getCinemaHall() != null ? source.getCinemaHall().getId() : 0);
     dto.setDate(source.getDate());
 
     var control = new GetSeatsWithStatusControl(source.getId());
@@ -23,7 +23,7 @@ public class PresentationWithSeatsDtoMapper
     dto.setSeats(seats);
 
     var reflectionMapper = new ReflectionMapper<Movie, MovieInfoDto>(MovieInfoDto.class);
-    dto.setMovie(reflectionMapper.map(source.getMovie()));
+    dto.setMovie(source.getMovie() != null ? reflectionMapper.map(source.getMovie()) : null);
 
     return dto;
   }

@@ -36,6 +36,11 @@ public class GetSeatsWithStatusControl extends ManagingControl<List<SeatForPrese
         Problems.requireEntity(
             repository.find(presentationId), presentationId, "No such presentation");
 
+    // If presentation has no cinema hall, return empty list of seats
+    if (presentation.getCinemaHall() == null) {
+      return result.success(List.of());
+    }
+
     var allSeats = presentation.getCinemaHall().getSeats();
     var reservedSeatIds =
         presentation
